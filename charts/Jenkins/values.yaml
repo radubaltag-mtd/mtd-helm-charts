@@ -1,27 +1,24 @@
-values: |
-  controller:
-    serviceType: ClusterIP
-    additionalPlugins:
-      - kubernetes-credentials-provider
-    JCasC:
-      defaultConfig: true
-      configScripts:
-        shared-library: |
-          unclassified:
-            globalLibraries:
-              libraries:
-                - name: {{ .Values.library.name }}
-                  defaultVersion: {{ .Values.library.defaultVersion }}
-                  implicit: {{ .Values.library.implicit }}
-                  retriever:
-                    modernSCM:
-                      scm:
-                        git:
-                          remote: {{ .Values.library.repoURL }}
-                          credentialsId: {{ .Values.library.credentialsId }}
+argocd:
+  namespace: argocd
+  project: default
+
+jenkins:
+  repoURL: https://charts.jenkins.io
+  chart: jenkins
+  chartVersion: 5.9.18
+  releaseName: jenkins
+
+destination:
+  server: https://kubernetes.default.svc
+  namespace: jenkins
+
+syncPolicy:
+  prune: true
+  selfHeal: true
+
 library:
   name: jenkins-shared-library
   defaultVersion: main
   implicit: true
-  repoURL: https://github.com/<your-user>/jenkins-shared-library.git
+  repoURL: https://github.com/radubaltag-mtd/jenkins-shared-library.git
   credentialsId: shared-library-pat
