@@ -1,0 +1,6 @@
+library:
+  name: jenkins-shared-library
+  defaultVersion: main
+  implicit: true
+  repoURL: https://github.com/radubaltag-mtd/jenkins-shared-library.git
+  credentialsId: shared-library-pat
