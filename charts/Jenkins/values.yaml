@@ -1,6 +1,21 @@
-library:
-  name: jenkins-shared-library
-  defaultVersion: main
-  implicit: true
-  repoURL: https://github.com/radubaltag-mtd/jenkins-shared-library.git
-  credentialsId: shared-library-pat
+values: |
+  controller:
+    serviceType: ClusterIP
+    additionalPlugins:
+      - kubernetes-credentials-provider
+    JCasC:
+      defaultConfig: true
+      configScripts:
+        shared-library: |
+          unclassified:
+            globalLibraries:
+              libraries:
+                - name: {{ .Values.library.name }}
+                  defaultVersion: {{ .Values.library.defaultVersion }}
+                  implicit: {{ .Values.library.implicit }}
+                  retriever:
+                    modernSCM:
+                      scm:
+                        git:
+                          remote: {{ .Values.library.repoURL }}
+                          credentialsId: {{ .Values.library.credentialsId }}
