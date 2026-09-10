@@ -1,4 +1,4 @@
-apiVersion: argoproj.io/v1alpha1
+kapiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: {{ .Values.jenkins.releaseName }}
@@ -12,18 +12,6 @@ spec:
     helm:
       releaseName: {{ .Values.jenkins.releaseName }}
       values: |
-        controller:
-          serviceType: ClusterIP
-  destination:
-    server: {{ .Values.destination.server }}
-    namespace: {{ .Values.destination.namespace }}
-  syncPolicy:
-    automated:
-      prune: {{ .Values.syncPolicy.prune }}
-      selfHeal: {{ .Values.syncPolicy.selfHeal }}
-    syncOptions:
-      - CreateNamespace=true
-  values: |
   controller:
     serviceType: ClusterIP
     additionalPlugins:
@@ -44,3 +32,12 @@ spec:
                         git:
                           remote: {{ .Values.library.repoURL }}
                           credentialsId: {{ .Values.library.credentialsId }}
+  destination:
+    server: {{ .Values.destination.server }}
+    namespace: {{ .Values.destination.namespace }}
+  syncPolicy:
+    automated:
+      prune: {{ .Values.syncPolicy.prune }}
+      selfHeal: {{ .Values.syncPolicy.selfHeal }}
+    syncOptions:
+      - CreateNamespace=true
