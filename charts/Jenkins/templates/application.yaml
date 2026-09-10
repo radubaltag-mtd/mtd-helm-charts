@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ .Values.jenkins.releaseName }}
+  namespace: {{ .Values.argocd.namespace }}
+spec:
+  project: {{ .Values.argocd.project }}
+  source:
+    repoURL: {{ .Values.jenkins.repoURL }}
+    chart: {{ .Values.jenkins.chart }}
+    targetRevision: {{ .Values.jenkins.chartVersion }}
+    helm:
+      releaseName: {{ .Values.jenkins.releaseName }}
+      values: |
+        controller:
+          serviceType: ClusterIP
+  destination:
+    server: {{ .Values.destination.server }}
+    namespace: {{ .Values.destination.namespace }}
+  syncPolicy:
+    automated:
+      prune: {{ .Values.syncPolicy.prune }}
+      selfHeal: {{ .Values.syncPolicy.selfHeal }}
+    syncOptions:
+      - CreateNamespace=true

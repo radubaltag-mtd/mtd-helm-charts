@@ -1,0 +1,17 @@
+argocd:
+  namespace: argocd
+  project: default
+
+jenkins:
+  repoURL: https://charts.jenkins.io
+  chart: jenkins
+  chartVersion: 5.9.18
+  releaseName: jenkins
+
+destination:
+  server: https://kubernetes.default.svc
+  namespace: jenkins
+
+syncPolicy:
+  prune: true
+  selfHeal: true
