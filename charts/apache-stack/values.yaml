@@ -1,0 +1,26 @@
+replicaCount: 3
+
+image:
+  repository: ubuntu/apache2
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: NodePort
+  port: 80
+  targetPort: 80
+  nodePort: 30090
+
+config:
+  indexHtml: |
+    <!DOCTYPE html>
+    <html>
+      <head><title>Apache on Kubernetes</title></head>
+      <body>
+        <h1>Hello from Apache!</h1>
+        <p>Provided by a Helm-managed deployment.</p>
+      </body>
+    </html>
+
+resources: {}
+revisionHistoryLimit: 3
