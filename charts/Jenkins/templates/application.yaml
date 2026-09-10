@@ -23,7 +23,7 @@ spec:
       selfHeal: {{ .Values.syncPolicy.selfHeal }}
     syncOptions:
       - CreateNamespace=true
-values: |
+  values: |
   controller:
     serviceType: ClusterIP
     additionalPlugins:
