@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: ghcr.io/radubaltag-mtd/sample-nodejs-api
-  tag: "0.0.0"
+  tag: 1.0.0-4375c46
   pullPolicy: IfNotPresent
 
 service:
