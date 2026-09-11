@@ -1,4 +1,4 @@
-kapiVersion: argoproj.io/v1alpha1
+apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: {{ .Values.jenkins.releaseName }}
@@ -66,4 +66,3 @@ spec:
       selfHeal: {{ .Values.syncPolicy.selfHeal }}
     syncOptions:
       - CreateNamespace=true
-
