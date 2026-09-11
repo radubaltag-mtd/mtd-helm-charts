@@ -15,6 +15,7 @@ spec:
           serviceType: ClusterIP
           additionalPlugins:
             - kubernetes-credentials-provider
+            - ansicolor
           JCasC:
             defaultConfig: true
             configScripts:
