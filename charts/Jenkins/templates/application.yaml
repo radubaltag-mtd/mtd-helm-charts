@@ -16,6 +16,7 @@ spec:
           additionalPlugins:
             - kubernetes-credentials-provider
             - ansicolor
+            - job-dsl
           JCasC:
             defaultConfig: true
             configScripts:
